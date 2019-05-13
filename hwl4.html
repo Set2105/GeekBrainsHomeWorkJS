@@ -1,0 +1,66 @@
+<script>
+    function initiate(num){
+        if ((num > 999) || (num<0)){
+            console.log('Неверный формат числа')
+            return null;
+        }
+        else{
+            var u = num % 10;
+            var t = (num % 100 - u) / 10;
+            var h = (num - t * 10 - u) / 100;
+            var res = {units: u,
+                       hours: h,
+                       tens: t
+            }
+            return res;
+        }
+    };
+    number = prompt('Введите число 0-999');
+    var tupleNum = initiate(number);
+    alert('Единицы : ' + tupleNum.units + '\nCотни: ' + tupleNum.hours + '\nДесятки : ' +  tupleNum.tens);
+
+    
+    
+    basket = {
+        products: [],
+        addProduct: function(id, name, price){
+            this.products.push([id, name, price])
+        },
+        deleteProductsById: function(id){
+            for (i=0; i<this.products.length; i++){
+                if (this.products[i][0] == id){
+                    this.products.splice(i, 1);
+                    i--;
+                }
+            }
+        },
+        deleteProductsByName: function(name){
+            for (i=0; i<this.products.length; i++){
+                if (this.products[i][1] == name){
+                    delete this.products[i];
+                    this.products.splice(i, 1);
+                    i--;
+                }
+            }
+        },
+        getNumberOfProducts: function(){
+            return this.products.length
+        },
+        getSumProductsPrice: function(){
+            var res = 0;
+            for (i=0; i<this.products.length; i++){
+                res = res + this.products[i][2];
+            }
+            return res;
+        },
+        showProducts: function(){
+            for(i=0; i<this.products.length; i++){
+                console.log(this.products[i])
+            }
+        }
+
+    }
+
+
+    
+</script>
